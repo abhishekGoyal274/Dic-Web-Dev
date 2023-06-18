@@ -1,0 +1,54 @@
+:root {
+  --blue: #03709f;
+  --darkBlue: #036089;
+  --white: #f8f6f4;
+}
+
+form,
+.con {
+  color: var(--blue);
+  font-family: "Roboto", sans-serif;
+  margin-left: 8%;
+  padding: 50px;
+}
+ul {
+  list-style-type: none;
+  font-size: 20px;
+}
+
+.button {
+  padding: 8px 30px;
+  border: 1px solid var(--white);
+  background-color: var(--white);
+  color: var(--blue);
+  border-radius: 20px;
+  box-shadow: 1px 1px 0 0;
+}
+input[type="text"],
+input[type="email"] {
+  border: 0 solid black;
+}
+input[type="text"],
+input[type="email"],
+textarea {
+  border-bottom: 1px solid var(--blue);
+  color: var(--darkBlue);
+  border-radius: 20px;
+  text-align: center;
+  padding: 15px 20px;
+}
+input[type="file"]::file-selector-button {
+  margin: 0 20px 0 10px;
+  border: none;
+  background: var(--blue);
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background: var(--darkBlue);
+}
+
