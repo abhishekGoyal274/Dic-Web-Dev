@@ -2,14 +2,13 @@ body {
   margin: 0;
 }
 
-
 :root {
   --blue: #03709f;
   --darkBlue: #036089;
   --white: #f8f6f4;
 }
 
-.flex-container img{
+.flex-container img {
   height: 100%;
   width: 100%;
   border-radius: 10px;
@@ -71,4 +70,26 @@ body {
   background-color: #9bcf22;
   color: white;
   transform: rotateY(180deg);
+}
+
+.head {
+  text-align: center;
+  color: var(--blue);
+  font-size: 5vw;
+  border: 7px solid var(--blue);
+  margin: 90px 30vw 40px 30vw;
+  border-bottom: 0;
+  border-right: 0;
+}
+
+#searchbar {
+  font-size: larger;
+  font-weight: 100;
+  padding: 10px 30px;
+  border-radius: 20px;
+}
+
+.search-img {
+  padding-top: 20px;
+  margin-top: 10px;
 }

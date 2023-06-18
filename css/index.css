@@ -2,6 +2,9 @@
   box-sizing: border-box;
 }
 
+body {
+  margin-top: 7px;
+}
 :root {
   --blue: #03709f;
   --darkBlue: #036089;
@@ -14,6 +17,27 @@ h1,
 div {
   margin: 0px;
   font-family: "Roboto", sans-serif;
+}
+
+/* Progress */
+progress {
+  position: fixed;
+  top: 0;
+  height: 7px;
+  color: aqua;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  border-radius: 0%;
+}
+progress::-moz-progress-bar {
+  background: var(--blue);
+}
+progress::-webkit-progress-value {
+  background: var(--blue);
+}
+progress {
+  color: var(--blue);
 }
 
 /* Navbar */
@@ -74,10 +98,10 @@ nav a:hover {
   color: white;
 }
 .hero-banner-heading {
-  font-size: 260%;
+  font-size: 4vw;
 }
 .hero-banner-text {
-  font-size: 150%;
+  font-size: 2.5vw;
 }
 /* Footer */
 .footer {
@@ -90,7 +114,7 @@ nav a:hover {
 }
 
 footer svg {
-  margin-top: -40px;
+  margin-top: 20px;
   margin-bottom: -10px;
 }
 
@@ -104,12 +128,29 @@ hr {
   flex-wrap: wrap;
   height: auto;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   align-content: space-between;
   padding: 0 30px 30px;
 }
 
-.flex-box{
+.flex-box {
   margin: 30px;
   padding: 0 20px;
+}
+
+.dark {
+  background-color: black;
+  color: var(--white);
+}
+
+@media only screen and (max-width: 700px) {
+  .nav-res {
+    display: none;
+  }
+  .hero-banner-heading {
+    font-size: 50px;
+  }
+  .hero-banner-text {
+    font-size: 30px;
+  }
 }
