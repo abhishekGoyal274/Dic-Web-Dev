@@ -1,8 +1,12 @@
 import React from "react";
-import "./css/home.css"
+import "./css/home.css";
+import HeroBanner from "./HeroBanner";
+import $ from "jquery";
+
 export default function Home() {
   return (
     <>
+      <HeroBanner />
       <div class="content">
         <h1>Home</h1>
         <br />
@@ -73,7 +77,6 @@ export default function Home() {
         <h2>
           <strong>Highlights of Placement Session 2022-23</strong>
           &nbsp;&nbsp;&nbsp;
-          <button class="table-1 table-button"></button>
         </h2>
         <table class="table-1-content">
           <tbody>
@@ -146,7 +149,6 @@ export default function Home() {
         <h2>
           <strong>Total No. of Offers </strong>
           &nbsp;&nbsp;&nbsp;
-          <button class="table-2 table-button"></button>
         </h2>
         <table class="table-2-content">
           <tbody>
@@ -172,7 +174,6 @@ export default function Home() {
         <h2>
           <strong>Average Package</strong>
           &nbsp;&nbsp;&nbsp;
-          <button class="table-3 table-button"></button>
         </h2>
         <table class="table-3-content">
           <tbody>
@@ -198,7 +199,6 @@ export default function Home() {
         <h2>
           <strong>No. of Companies</strong>
           &nbsp;&nbsp;&nbsp;
-          <button class="table-4 table-button"></button>
         </h2>
         <table class="table-4-content">
           <tbody>

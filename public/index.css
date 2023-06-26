@@ -78,7 +78,7 @@ nav a:hover {
 
 /* Hero-Banner */
 .hero-banner {
-  background-image: url("../images/campus.jpg");
+  background-image: url("campus.jpg");
   background-repeat: no-repeat;
   background-position: top;
   background-size: cover;
@@ -119,6 +119,10 @@ footer svg {
   margin-bottom: -10px;
 }
 
+svg{
+  fill: var(--white);
+}
+
 hr {
   color: var(--darkBlue);
   background-color: var(--blue);
@@ -137,10 +141,6 @@ hr {
 .flex-box {
   margin: 30px;
   padding: 0 20px;
-}
-
-svg{
-  fill: #f8f6f4;
 }
 
 .dark {

@@ -5,6 +5,12 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./components/Home";
 import Facilities from "./components/Facilities";
+import ContactUs from "./components/ContactUs";
+import Campus from "./components/Campus";
+import AddInfo from "./components/AddInfo";
+import Students from "./components/Students";
+
+// Drak Mod
 
 function App() {
   return (
@@ -14,10 +20,11 @@ function App() {
           <Route path="/" element={<Navbar />}>
             <Route index element={<Home />} />
             <Route path="Facilities" element={<Facilities />} />
-          {/* <Route path="contact" element={<Contact />} />
-          <Route path="User" element={<User />} />
-          <Route path="register" element={<Register />} />
-          <Route path="*" element={<NoPage />} /> */}
+            <Route path="Campus" element={<Campus />} />
+            <Route path="Contact" element={<ContactUs />} />
+            <Route path="Add" element={<AddInfo />} />
+            <Route path="Students" element={<Students />} />
+            {/* <Route path="*" element={<NoPage />} /> */}
           </Route>
         </Routes>
       </BrowserRouter>
