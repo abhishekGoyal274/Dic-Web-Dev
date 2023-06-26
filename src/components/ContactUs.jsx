@@ -53,7 +53,6 @@ export default function ContactUs() {
         <textarea
           rows="6"
           name="querry"
-          cols="30"
           placeholder="Describe your querry here..."
         ></textarea>
         <br />

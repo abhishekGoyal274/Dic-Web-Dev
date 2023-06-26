@@ -13,6 +13,7 @@ export default function AddInfo() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(inputs);
+    setInputs({});
   };
   return (
     <>
