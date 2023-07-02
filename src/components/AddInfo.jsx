@@ -10,6 +10,7 @@ export default function AddInfo() {
   const [link1, setLink1] = useState("");
   const [link2, setLink2] = useState("");
   const [link3, setLink3] = useState("");
+  const [disabled, setdisabled] = useState(false);
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -19,6 +20,8 @@ export default function AddInfo() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setdisabled(true);
+
     const links = [link1, link2, link3];
     const data = { ...inputs, links, image };
     const formData = new FormData();
@@ -43,11 +46,13 @@ export default function AddInfo() {
       alert(err);
     }
 
-    // setImage("");
-    // setLink1("");
-    // setLink2("");
-    // setLink3("");
-    // setInputs({});
+    setImage("");
+    setLink1("");
+    setLink2("");
+    setLink3("");
+    setInputs({});
+    
+    setdisabled(false);
   };
   return (
     <>
@@ -60,208 +65,210 @@ export default function AddInfo() {
           method="post"
           enctype="multipart/form-data"
         >
-          <h1>Register</h1>
-          <div className="section">
-            <span>1</span>Personal Info
-          </div>
-          <div className="inner-wrap">
-            <label>
-              Add profile Image:
-              <img
-                style={{
-                  height: "100px",
-                  width: "100px",
-                  borderRadius: "100%",
-                  marginLeft: "30px",
-                  marginBottom: "20px",
-                }}
-                src={image === "" ? "" : URL.createObjectURL(image)}
-                alt="preview"
-              />
-              <input
-                type="file"
-                name="avatar"
-                accept=".jpg"
-                onChange={(event) => {
-                  setImage(event.target.files[0]);
-                }}
-              />
-            </label>
-            <label>
-              Name *
-              <input
-                type="text"
-                name="name"
-                required="true"
-                className="form-field"
-                placeholder="Abhishek Goyal"
-                value={inputs.name || ""}
-                onChange={handleChange}
-              />
-            </label>
-            <label>
-              Address
-              <input
-                type="text"
-                name="address"
-                className="form-field"
-                placeholder="Nai abadi street no 6"
-                value={inputs.address || ""}
-                onChange={handleChange}
-              />
-            </label>
-            <label>
-              City
-              <input
-                type="text"
-                name="city"
-                className="form-field"
-                placeholder="Abohar, Punjab, India"
-                value={inputs.city || ""}
-                onChange={handleChange}
-              />
-            </label>
+          <fieldset disabled={disabled}>
+            <h1>Register</h1>
+            <div className="section">
+              <span>1</span>Personal Info
+            </div>
+            <div className="inner-wrap">
+              <label>
+                Add profile Image:
+                <img
+                  style={{
+                    height: "100px",
+                    width: "100px",
+                    borderRadius: "100%",
+                    marginLeft: "30px",
+                    marginBottom: "20px",
+                  }}
+                  src={image === "" ? "" : URL.createObjectURL(image)}
+                  alt="preview"
+                />
+                <input
+                  type="file"
+                  name="avatar"
+                  accept=".jpg"
+                  onChange={(event) => {
+                    setImage(event.target.files[0]);
+                  }}
+                />
+              </label>
+              <label>
+                Name *
+                <input
+                  type="text"
+                  name="name"
+                  required="true"
+                  className="form-field"
+                  placeholder="Abhishek Goyal"
+                  value={inputs.name || ""}
+                  onChange={handleChange}
+                />
+              </label>
+              <label>
+                Address
+                <input
+                  type="text"
+                  name="address"
+                  className="form-field"
+                  placeholder="Nai abadi street no 6"
+                  value={inputs.address || ""}
+                  onChange={handleChange}
+                />
+              </label>
+              <label>
+                City
+                <input
+                  type="text"
+                  name="city"
+                  className="form-field"
+                  placeholder="Abohar, Punjab, India"
+                  value={inputs.city || ""}
+                  onChange={handleChange}
+                />
+              </label>
 
-            <label>
-              Email *
-              <input
-                type="email"
-                name="email"
-                className="form-field"
-                required="true"
-                placeholder="xyz@hmail.com"
-                value={inputs.email || ""}
-                onChange={handleChange}
-              />
-            </label>
-            <label>
-              Phone Number
-              <input
-                type="text"
-                name="phone_no"
-                className="form-field"
-                placeholder="905*****55"
-                value={inputs.phone_no || ""}
-                onChange={handleChange}
-              />
-            </label>
-            <label>
-              About Yourself
-              <input
-                type="text"
-                style={{ height: "80px" }}
-                name="about"
-                className="form-field"
-                placeholder="Hello my name is ...."
-                value={inputs.about || ""}
-                onChange={handleChange}
-              />
-            </label>
-          </div>
+              <label>
+                Email *
+                <input
+                  type="email"
+                  name="email"
+                  className="form-field"
+                  required="true"
+                  placeholder="xyz@hmail.com"
+                  value={inputs.email || ""}
+                  onChange={handleChange}
+                />
+              </label>
+              <label>
+                Phone Number
+                <input
+                  type="text"
+                  name="phone_no"
+                  className="form-field"
+                  placeholder="905*****55"
+                  value={inputs.phone_no || ""}
+                  onChange={handleChange}
+                />
+              </label>
+              <label>
+                About Yourself
+                <input
+                  type="text"
+                  style={{ height: "80px" }}
+                  name="about"
+                  className="form-field"
+                  placeholder="Hello my name is ...."
+                  value={inputs.about || ""}
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
 
-          <div className="section">
-            <span>2</span>University Info
-          </div>
-          <div className="inner-wrap">
-            <label>
-              Roll No *
-              <input
-                type="text"
-                name="roll_no"
-                className="form-field"
-                placeholder="UE208007"
-                required="true"
-                value={inputs.roll_no || ""}
-                onChange={handleChange}
-              />
-            </label>
-            <label>
-              Branch *
-              <input
-                type="text"
-                name="branch"
-                className="form-field"
-                required="true"
-                placeholder="Information Technology"
-                value={inputs.branch || ""}
-                onChange={handleChange}
-              />
-            </label>
-          </div>
-          <div className="section">
-            <span>3</span>Personal/Work Links
-          </div>
-          <div className="inner-wrap">
-            <label>
-              Links 1
-              <input
-                type="text"
-                name="link1"
-                required="true"
-                className="form-field"
-                value={link1 || ""}
-                onChange={(event) => {
-                  setLink1(event.target.value);
+            <div className="section">
+              <span>2</span>University Info
+            </div>
+            <div className="inner-wrap">
+              <label>
+                Roll No *
+                <input
+                  type="text"
+                  name="roll_no"
+                  className="form-field"
+                  placeholder="UE208007"
+                  required="true"
+                  value={inputs.roll_no || ""}
+                  onChange={handleChange}
+                />
+              </label>
+              <label>
+                Branch *
+                <input
+                  type="text"
+                  name="branch"
+                  className="form-field"
+                  required="true"
+                  placeholder="Information Technology"
+                  value={inputs.branch || ""}
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
+            <div className="section">
+              <span>3</span>Personal/Work Links
+            </div>
+            <div className="inner-wrap">
+              <label>
+                Links 1
+                <input
+                  type="text"
+                  name="link1"
+                  required="true"
+                  className="form-field"
+                  value={link1 || ""}
+                  onChange={(event) => {
+                    setLink1(event.target.value);
+                  }}
+                />
+              </label>
+              <label>
+                Links 2
+                <input
+                  type="text"
+                  name="link1"
+                  required="true"
+                  className="form-field"
+                  value={link2 || ""}
+                  onChange={(event) => {
+                    setLink2(event.target.value);
+                  }}
+                />
+              </label>
+              <label>
+                Links 3
+                <input
+                  type="text"
+                  name="link1"
+                  required="true"
+                  className="form-field"
+                  value={link3 || ""}
+                  onChange={(event) => {
+                    setLink3(event.target.value);
+                  }}
+                />
+              </label>
+            </div>
+            <div className="section">
+              <span>4</span>OTP
+            </div>
+            <div className="inner-wrap">
+              <label>
+                OPT*
+                <input
+                  type="text"
+                  name="OTP"
+                  className="form-field"
+                  placeholder="123456"
+                  value={inputs.OTP || ""}
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
+            <div className="button-section">
+              <button
+                className="waves-effect waves-light btn center-align white-text text-darken-2 card-panel indigo darken-4  z-depth-1"
+                style={{ backgroundColor: "#036089", color: "white" }}
+                onClick={(event) => {
+                  handleSubmit(event);
                 }}
-              />
-            </label>
-            <label>
-              Links 2
-              <input
-                type="text"
-                name="link1"
-                required="true"
-                className="form-field"
-                value={link2 || ""}
-                onChange={(event) => {
-                  setLink2(event.target.value);
-                }}
-              />
-            </label>
-            <label>
-              Links 3
-              <input
-                type="text"
-                name="link1"
-                required="true"
-                className="form-field"
-                value={link3 || ""}
-                onChange={(event) => {
-                  setLink3(event.target.value);
-                }}
-              />
-            </label>
-          </div>
-          <div className="section">
-            <span>4</span>OTP
-          </div>
-          <div className="inner-wrap">
-            <label>
-              OPT*
-              <input
-                type="text"
-                name="OTP"
-                className="form-field"
-                placeholder="123456"
-                value={inputs.OTP || ""}
-                onChange={handleChange}
-              />
-            </label>
-          </div>
-          <div className="button-section">
-            <button
-              className="waves-effect waves-light btn center-align white-text text-darken-2 card-panel indigo darken-4  z-depth-1"
-              style={{ backgroundColor: "#036089", color: "white" }}
-              onClick={(event) => {
-                handleSubmit(event);
-              }}
-            >
-              Register
-            </button>
-            <span className="privacy-policy">
-              You agree to our Terms and Policy.
-            </span>
-          </div>
+              >
+                Register
+              </button>
+              <span className="privacy-policy">
+                You agree to our Terms and Policy.
+              </span>
+            </div>
+          </fieldset>
         </form>
       </div>
     </>

@@ -1,15 +1,23 @@
 import React, { useEffect, useState } from "react";
 import "./css/studentCard.css";
 import axios from "axios";
+import Lottie from "lottie-react";
+import animationData from "./lotttie/loading.json";
 
 export default function Students() {
   const [info, setInfo] = useState();
   const [loaded, setLoaded] = useState(false);
   const getData = async () => {
-    const information = await axios.get("https://dic-backend.onrender.com/student/");
-    setInfo(information.data);
-    console.log(information);
-    setLoaded(true);
+    await axios
+      .get("https://dic-backend.onrender.com/student/")
+      .then((res) => {
+        setInfo(res.data);
+        setLoaded(true);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("Error : ", error);
+      });
   };
 
   useEffect(() => {
@@ -60,7 +68,10 @@ export default function Students() {
         />
       </div>
       {!loaded ? (
-        <div>Loading....</div>
+        <Lottie
+          style={{ height: "200px", marginTop: "40px" }}
+          animationData={animationData}
+        />
       ) : (
         <div class="ag-format-container">
           <div class="ag-courses_box">
