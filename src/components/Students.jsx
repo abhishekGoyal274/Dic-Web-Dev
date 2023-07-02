@@ -1,13 +1,20 @@
-import React from "react";
-import data from "./data/data";
+import React, { useEffect, useState } from "react";
 import "./css/studentCard.css";
-
-function Student(f) {
-  console.log("hello");
-  return <div>Student</div>;
-}
+import axios from "axios";
 
 export default function Students() {
+  const [info, setInfo] = useState();
+  const [loaded, setLoaded] = useState(false);
+  const getData = async () => {
+    const information = await axios.get("https://dic-backend.onrender.com/student/");
+    setInfo(information.data);
+    console.log(information);
+    setLoaded(true);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
   function search(e) {
     let input = document.getElementById("searchbar1").value;
     input = input.toLowerCase();
@@ -20,13 +27,18 @@ export default function Students() {
       text = text.toLowerCase();
       let text1 = x[index].children[0].children[1].children[2].innerHTML;
       text1 = text1.toLowerCase();
-      if (!text.includes(input) && !text1.includes(input) && !heading.includes(input)) {
+      if (
+        !text.includes(input) &&
+        !text1.includes(input) &&
+        !heading.includes(input)
+      ) {
         x[index].style.display = "none";
       } else {
-        x[index].style.display = "inherit";
+        x[index].style.display = "inline";
       }
     }
   }
+
   return (
     <>
       <div style={{ textAlign: "center" }} data-aos="fade-up">
@@ -36,8 +48,9 @@ export default function Students() {
           alt="stu"
         />
       </div>
-      <div style={{ textAlign: "center"}}>
-        <label for="searchbar1">Search for facilities:</label> &nbsp;&nbsp;&nbsp;
+      <div style={{ textAlign: "center" }}>
+        <label for="searchbar1">Search for facilities:</label>{" "}
+        &nbsp;&nbsp;&nbsp;
         <input
           id="searchbar1"
           onChange={search}
@@ -46,42 +59,84 @@ export default function Students() {
           placeholder="Ex:Abhishek Goyal"
         />
       </div>
-      <div class="ag-format-container">
-        <div class="ag-courses_box">
-          {data.map((user) => (
-            <div class="ag-courses_item">
-              <a class="ag-courses-item_link">
-                <div class="ag-courses-item_bg"></div>
-                <div class="ag-courses-item_title">
-                  <p style={{ fontSize: "2.1rem" }}>{user.name}</p>
-                  <p className="grey">{user.roll_no}</p>
-                  <p className="grey">{user.branch}</p>
-                </div>
-                <div class="ag-courses-item_date-box">
-                  <h4>
-                    About: <br />
-                    <p className="grey">{user.about}</p>
-                  </h4>
-                  <h4>
-                    Verification data: <br />
-                    <p className="grey">{user.ver_data}</p>
-                  </h4>
-                  <h4>
-                    Address:
+      {!loaded ? (
+        <div>Loading....</div>
+      ) : (
+        <div class="ag-format-container">
+          <div class="ag-courses_box">
+            {info.map((user) => (
+              <div class="ag-courses_item">
+                <a class="ag-courses-item_link">
+                  <div class="ag-courses-item_bg"></div>
+                  <div class="ag-courses-item_title">
+                    <img
+                      style={{
+                        margin: "10px 0",
+                        borderRadius: "100%",
+                        height: "100px",
+                        width: "100px",
+                      }}
+                      src={`https://dic-backend.onrender.com/uploads/${user.profile}`}
+                      alt="profile"
+                    />
+                    <p style={{ fontSize: "2.1rem" }}>{user.name || " "}</p>
+                    <p className="grey">{user.roll_no || " "}</p>
+                    <p className="grey">{user.branch || " "}</p>
+                  </div>
+                  <div class="ag-courses-item_date-box">
+                    <h4>
+                      About: <br />
+                      <p className="grey">{user.about || " "}</p>
+                    </h4>
+                    <h4>
+                      Address:
+                      <br />
+                      <p className="grey">{user.address || " "}</p>
+                    </h4>
                     <br />
-                    <p className="grey">{user.address}</p>
-                  </h4>
-                  <br />
-                  <h4>Personal Info:</h4>
-                  <p className="grey"> {user.email}</p>
-                  <p className="grey"> {user.phone_no}</p>
-                  <p className="grey"> {user.city}</p>
-                </div>
-              </a>
-            </div>
-          ))}
+                    <h4>Personal Info:</h4>
+                    <p className="grey"> {user.email || " "}</p>
+                    <p className="grey"> {user.phone_no || " "}</p>
+                    <p className="grey"> {user.city || " "}</p>
+                    <br />
+                    <h4>Personal Links:</h4>
+                    <p className="grey">
+                      {" "}
+                      <a
+                        style={{ textDecoration: "none", color: "white" }}
+                        href={user.links[0]}
+                        target="_blank"
+                      >
+                        Link 1
+                      </a>
+                    </p>
+                    <p className="grey">
+                      {" "}
+                      <a
+                        style={{ textDecoration: "none", color: "white" }}
+                        href={user.links[1]}
+                        target="_blank"
+                      >
+                        Link 2
+                      </a>
+                    </p>
+                    <p className="grey">
+                      {" "}
+                      <a
+                        style={{ textDecoration: "none", color: "white" }}
+                        href={user.links[2]}
+                        target="_blank"
+                      >
+                        Link 3
+                      </a>
+                    </p>
+                  </div>
+                </a>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 }

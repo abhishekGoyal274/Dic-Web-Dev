@@ -29,6 +29,13 @@ export default function ContactUs() {
 
   return (
     <>
+      <div style={{ textAlign: "center" }} data-aos="fade-up">
+        <img
+          src="https://img.freepik.com/free-vector/organic-flat-customer-support-illustration_23-2148899174.jpg?w=900&t=st=1688244260~exp=1688244860~hmac=85062763b103ceedf79de42fcda51e79d87842cdc10414745082e8d013a54939"
+          width={"80%"}
+          alt="stu"
+        />
+      </div>
       <form onSubmit={handleSubmit}>
         <h1>Querry/Contact Form</h1>
         <hr />

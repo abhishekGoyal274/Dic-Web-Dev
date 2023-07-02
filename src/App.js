@@ -9,7 +9,7 @@ import ContactUs from "./components/ContactUs";
 import Campus from "./components/Campus";
 import AddInfo from "./components/AddInfo";
 import Students from "./components/Students";
-import NoPage from "./components/NoPage"
+import NoPage from "./components/NoPage";
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
             <Route path="Contact" element={<ContactUs />} />
             <Route path="Add" element={<AddInfo />} />
             <Route path="Students" element={<Students />} />
-            <Route path="*" element={< NoPage/>} />
+            <Route path="*" element={<NoPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
