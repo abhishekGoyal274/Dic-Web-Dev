@@ -36,22 +36,20 @@ export default function AddInfo() {
     formData.append("about", data.about);
     formData.append("branch", data.branch);
     formData.append("links", data.links);
-    try {
-      const res = await axios.post(
-        "https://dic-backend.onrender.com/student/upload",
-        formData
-      );
-      alert(res.data.Message);
-    } catch (err) {
-      alert(err);
-    }
 
-    setImage("");
-    setLink1("");
-    setLink2("");
-    setLink3("");
-    setInputs({});
-    
+    await axios
+      .post(`https://dic-backend.onrender.com/student/upload`, formData)
+      .then((res) => {
+        alert(res.data.Message);
+        setImage("");
+        setLink1("");
+        setLink2("");
+        setLink3("");
+        setInputs({});
+      })
+      .catch((err) => {
+        alert("Error");
+      });
     setdisabled(false);
   };
   return (

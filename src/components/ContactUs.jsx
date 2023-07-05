@@ -1,30 +1,33 @@
 import React from "react";
 import "./css/contact us.css";
+import axios from "axios";
 
 export default function ContactUs() {
   // Form Validation
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     console.log(event);
     let firstname = event.target[0].value;
     let lastname = event.target[1].value;
-    let Email = event.target[2].value;
-    let fileToUpload = event.target[3].value;
-    let querry = event.target[4].value;
-    alert(
-      " firstname: " +
-        firstname +
-        "\n lastname: " +
-        lastname +
-        "\n Email: " +
-        Email +
-        "\n filetoUpload: " +
-        fileToUpload +
-        "\n querry: " +
-        querry +
-        "\n" +
-        " Successfully Uploaded"
-    );
+    let email = event.target[2].value;
+    let querry = event.target[3].value;
+
+    await axios
+      .post("https://dic-backend.onrender.com/querry", {
+        firstname,
+        lastname,
+        email,
+        querry,
+      })
+      .then((res) => {
+        console.log(res);
+        alert("Success", res);
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("Error"+err);
+      });
+      document.getElementById("querry-form").reset();
   }
 
   return (
@@ -36,7 +39,7 @@ export default function ContactUs() {
           alt="stu"
         />
       </div>
-      <form onSubmit={handleSubmit}>
+      <form id="querry-form" onSubmit={handleSubmit}>
         <h1>Querry/Contact Form</h1>
         <hr />
         <h3>User Details:</h3>
@@ -49,11 +52,6 @@ export default function ContactUs() {
         <br />
         <label for="Email">Email(optional): </label>
         <input type="email" name="Email" placeholder="xyz@gmail.com" />
-        <br />
-        <br />
-        <h3>Documents (If any):</h3>
-        <label for="file">PDF/Image : </label>
-        <input type="file" name="fileToUpload" id="file" />
         <br />
         <br />
         <h3>Querry:</h3>
